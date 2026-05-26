@@ -18,6 +18,8 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];let
 const templates={PRODUCIR:'Reporte Ejecutivo',SOLUCIONAR:'Incidente',CREAR:'Diseño de Sistema',INVESTIGAR:'Investigación',PROCESAR:'Plan de Acción',DESAHOGO:'Resumen de Contención'};
 let cfg=JSON.parse(localStorage.getItem('intake_cfg_v2')||'{"mode":"aggressive","autofill":true,"depth":4,"lang":"es"}');
 let settings=JSON.parse(localStorage.getItem('intake_backend_v2')||'{"url":"","key":""}');
+// Auto-detect backend URL if same origin
+if(!settings.url&&window.location.origin.indexOf('localhost')===-1){settings.url=window.location.origin.replace(/\/$/,'');localStorage.setItem('intake_backend_v2',JSON.stringify(settings));}
 const STOP=new Set('el la los las un una unos unas de del al que y o en para por con sin se es son fue fui esta este esto esa ese como pero mas más ya no si sí me te le lo mi mis tu tus su sus a e u'.split(' '));
 const ACTIONS='hacer crear corregir actualizar revisar enviar llamar pagar cancelar ordenar unificar generar decodificar rellenar lavar barrer trapear contactar sacar validar preparar cambiar comprar entregar escribir redactar producir investigar buscar resolver arreglar probar auditar limpiar priorizar catalogar estructurar ingerir'.split(' ');
 const CORR={q:'que',xq:'porque',pq:'porque',xfa:'por favor',tb:'también',tmb:'también',bn:'bien',maldit:'maldito',intaker:'intaker',ingere:'ingiere',inferenciacion:'inferenciación',priorizacion:'priorización',ortografia:'ortografía',catalogacion:'catalogación',automatico:'automático',automaticamente:'automáticamente',funcion:'función',revision:'revisión',accion:'acción',resumenes:'resúmenes',escenarios:'escenarios'};
